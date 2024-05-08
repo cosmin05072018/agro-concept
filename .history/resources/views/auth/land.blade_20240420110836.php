@@ -1,0 +1,190 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Terenuri') }}
+        </h2>
+    </x-slot>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Accordion Item #1
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
+                    plugin adds the appropriate classes that we use to style each element. These classes control the
+                    overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                    this with custom CSS or overriding our default variables. It's also worth noting that just about any
+                    HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Accordion Item #2
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
+                    collapse plugin adds the appropriate classes that we use to style each element. These classes
+                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
+                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
+                    overflow.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Accordion Item #3
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                    collapse plugin adds the appropriate classes that we use to style each element. These classes
+                    control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                    modify any of this with custom CSS or overriding our default variables. It's also worth noting that
+                    just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
+                    overflow.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-3">
+        <div class="mx-auto">
+            <div class="bg-white p-3">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form method="POST" action="{{ route('addLand') }}" class="mb-5">
+                                @csrf
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="nume" class="form-label">Nume teren <span
+                                                class="text-danger fw-bold">*</span>:</label>
+                                        <input id="nume" type="text" class="form-control" name="nameLand"
+                                            autofocus value="{{ old('nameLand') }}"
+                                            placeholder="Introduceti numele terenului">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="judet" class="form-label">Judet <span
+                                                class="text-danger fw-bold">*</span>:</label>
+                                        <input id="judet" type="text" class="form-control" name="judet"
+                                            value="{{ old('judet') }}" placeholder="Introduceti numele judetului">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="localitate" class="form-label">Localitate <span
+                                                class="text-danger fw-bold">*</span>:</label>
+                                        <input id="localitate" type="text" class="form-control" name="localitate"
+                                            autofocus value="{{ old('localitate') }}"
+                                            placeholder="Introduceti numele Localitatii">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="mentiuni" class="form-label">Mențiuni (opțional):</label>
+                                    <textarea id="mentiuni" class="form-control" name="mentiuni" rows="3"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-send-data">Adaugă teren</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    @if ($terenuri->count())
+                        <h3 class="text-center">Tabel Terenuri</h3>
+                        <table class="table table-striped table-hover" id="table">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col" class="text-center">#</th>
+                                    <th scope="col" class="text-center">Nume teren</th>
+                                    <th scope="col" class="text-center">Judet</th>
+                                    <th scope="col" class="text-center">Localitate</th>
+                                    <th scope="col" class="text-center">Mențiuni (dacă sunt)</th>
+                                    <th scope="col" class="text-center">Acțiuni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($terenuri as $teren)
+                                    <tr>
+                                        <td class="text-center">{{ $teren->id }}</td>
+                                        <td class="text-center">{{ $teren->nume_teren }}</td>
+                                        <td class="text-center">{{ $teren->judet }}</td>
+                                        <td class="text-center">{{ $teren->localitate }}</td>
+                                        <td class="text-center">{{ $teren->mentiuni }}</td>
+                                        <td>
+                                            urmeaza editat (actualizare, stergere, vezi contract)
+                                            {{-- <div class="d-flex justify-content-around align-items-center">
+                                    <button class="btn btn-primary w-25">
+                                        <a href="{{ route('detailsProduct', $teren->id) }}" class="text-white d-flex align-items-center justify-content-between">
+                                            Details
+                                            <i class="bi bi-info-circle"></i>
+                                        </a>
+                                    </button>
+                                    <button class="btn btn-warning w-25">
+                                        <a href="{{ route('updateProductView', $teren->id) }}" class="text-white d-flex align-items-center justify-content-between">
+                                            Update
+                                            <i class="bi bi-pass-fill"></i>
+                                        </a>
+                                    </button>
+                                    <form action="{{ route('deleteProduct', $teren->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger w-100 d-flex align-items-center justify-content-between"> Delete <i class="bi bi-trash"></i></button>
+                                    </form>
+                                </div> --}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+<script>
+    $(document).ready(function() {
+
+        $('#table').DataTable({
+            layout: {
+                topStart: {
+                    buttons: ['excel', 'pdf', 'print']
+                }
+            },
+            "columnDefs": [{
+                "targets": [4, 5],
+                "orderable": false
+            }],
+            "info": false,
+            "paging": false,
+            "language": {
+                search: 'Cauta:'
+            }
+        });
+        $(".dt-search").addClass("d-flex flex-column");
+        $(".dt-search-0").addClass("form-label");
+        $(".dt-input").addClass("form-control form-control-sm mb-3");
+        $(".buttons-excel").addClass("btn btn-primary");
+        $(".buttons-pdf").addClass("btn btn-danger");
+        $(".buttons-print").addClass("btn btn-info");
+    });
+</script>

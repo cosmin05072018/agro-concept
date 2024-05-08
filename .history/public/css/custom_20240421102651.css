@@ -1,0 +1,64 @@
+a {
+    text-decoration: none;
+}
+
+.btn-send-data {
+    background-color: rgb(251, 177, 104);
+    color: rgb(255, 255, 255);
+    transition: 1s ease;
+}
+
+.btn-send-data:hover {
+    background-color: rgb(60, 44, 50);
+    color: rgb(255, 255, 255);
+}
+
+ion-icon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+/* datatables */
+/*
+.dt-search{
+    display: flex;
+    align-items: center;
+} */
+
+/* .dt-input{
+    margin-left: 12px !important;
+    border-radius: 10px !important;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+} */
+
+body.dt-print-view h1 {
+    text-align: right;
+    margin: 1em;
+    font-size: 100px;
+}
+
+table {
+    table-layout: fixed;
+    width: 220px;
+}
+
+td {
+    /* overflow: hidden; */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

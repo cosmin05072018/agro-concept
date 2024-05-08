@@ -1,0 +1,30 @@
+a{
+    text-decoration: none;
+}
+
+.btn-send-data{
+    background-color: rgb(251,177,104);
+    color: rgb(255, 255, 255);
+    transition: 1s ease;
+}
+
+.btn-send-data:hover{
+    background-color: rgb(60,44,50);
+    color: rgb(255, 255, 255);
+}
+
+label{
+    font-size: 12px;
+}
+
+ion-icon{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+/* datatables */
+
+.dt-search{
+    background-color: red !important;
+}

@@ -1,0 +1,13 @@
+a{
+    text-decoration: none;
+}
+
+.btn-send-data{
+    background-color: rgb(251,177,104);
+    color: rgb(255, 255, 255);
+}
+
+.btn-send-data:hover{
+    background-color: rgb(60,44,50);
+    color: rgb(255, 255, 255);
+}
